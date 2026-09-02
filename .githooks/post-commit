@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# PLM 연동 post-commit 훅
+#
+# 커밋 메시지 규칙:
+#   #<taskId>        어떤 과제와 관련된 커밋인지 표시 (필수)
+#   %<0-100>         진행률을 함께 지정 (선택) — 있으면 progress 상태로 전환
+#   완료 / done       해당 과제를 완료 처리 (선택) — %보다 우선
+#
+# 예:
+#   git commit -m "훅 파싱 로직 구현 #seed-t3 %60"
+#   git commit -m "post-commit 훅 동작 검증 완료 #seed-t3 완료"
+#
+# 이 훅은 커밋을 절대 막지 않습니다 (post-commit은 커밋이 끝난 뒤 실행되므로
+# 여기서 실패해도 커밋 자체는 이미 완료된 상태입니다). PLM 서버가 꺼져 있어도
+# 조용히 넘어갑니다.
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+[ -z "$REPO_ROOT" ] && exit 0
+
+MSG=$(git log -1 --pretty=%B 2>/dev/null)
+TASK_ID=$(echo "$MSG" | grep -oE '#[A-Za-z0-9_-]+' | head -1 | sed 's/#//')
+
+[ -z "$TASK_ID" ] && exit 0   # 태스크 참조 없으면 조용히 종료
+
+PCT=$(echo "$MSG" | grep -oE '%[0-9]{1,3}' | head -1 | sed 's/%//')
+SCRIPT="$REPO_ROOT/scripts/plm-task.sh"
+[ -f "$SCRIPT" ] || exit 0
+
+if echo "$MSG" | grep -Eiq '완료|\bdone\b'; then
+  bash "$SCRIPT" done "$TASK_ID" >/dev/null 2>&1
+elif [ -n "$PCT" ]; then
+  bash "$SCRIPT" progress "$TASK_ID" "$PCT" >/dev/null 2>&1
+else
+  bash "$SCRIPT" status "$TASK_ID" progress >/dev/null 2>&1
+fi
+
+exit 0

@@ -1,0 +1,12 @@
+{
+  "name": "plm-dashboard",
+  "version": "1.0.0",
+  "description": "개인 과제/프로젝트 관리용 로컬 대시보드 (외부 의존성 없음)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

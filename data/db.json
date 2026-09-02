@@ -1,0 +1,84 @@
+{
+  "tasks": [
+    {
+      "id": "seed-t1",
+      "title": "VS Code Tasks 연동 스크립트 작성 (tasks.json + plm-task.sh)",
+      "project": "개인형 PLM 대시보드 1차 개선",
+      "status": "progress",
+      "progress": 100,
+      "due": "2026-09-08"
+    },
+    {
+      "id": "seed-t2",
+      "title": "대시보드 Basic Auth 인증 추가",
+      "project": "개인형 PLM 대시보드 1차 개선",
+      "status": "hold",
+      "progress": 0,
+      "due": "2026-09-08"
+    },
+    {
+      "id": "seed-t3",
+      "title": "Git 커밋 훅 연동 설계 및 구현 (커밋 메시지로 과제 자동 갱신)",
+      "project": "개인형 PLM 대시보드 1차 개선",
+      "status": "hold",
+      "progress": 0,
+      "due": "2026-09-15"
+    },
+    {
+      "id": "seed-t4",
+      "title": "리스크·노트 기능 2주간 실사용 테스트 및 버그 수정",
+      "project": "개인형 PLM 대시보드 1차 개선",
+      "status": "hold",
+      "progress": 0,
+      "due": "2026-09-15"
+    },
+    {
+      "id": "seed-t5",
+      "title": "VS Code 확장 프로토타입 (사이드바 과제 조회)",
+      "project": "개인형 PLM 대시보드 1차 개선",
+      "status": "hold",
+      "progress": 0,
+      "due": "2026-09-22"
+    },
+    {
+      "id": "seed-t6",
+      "title": "데이터 백업·복구 절차 수립",
+      "project": "개인형 PLM 대시보드 1차 개선",
+      "status": "hold",
+      "progress": 0,
+      "due": "2026-09-22"
+    },
+    {
+      "id": "seed-t7",
+      "title": "문서화 및 1차 개선 결과 점검",
+      "project": "개인형 PLM 대시보드 1차 개선",
+      "status": "hold",
+      "progress": 0,
+      "due": "2026-09-29"
+    }
+  ],
+  "projects": [
+    {
+      "id": "seed-p1",
+      "title": "개인형 PLM 대시보드 1차 개선",
+      "summary": "목표: VS Code와의 작업 루프 형성 및 대시보드 실사용 안정화.\nKPI: (1) VS Code-대시보드 상태 반영 수동/자동 성공률 100%, (2) 4주간 매일 1회 이상 실사용, (3) 주요 버그 0건 유지, (4) 모바일 접속 성공률 100%.",
+      "milestones": [
+        { "title": "1주차: VS Code Tasks 연동 + 인증 추가 완료", "date": "2026-09-08", "done": false },
+        { "title": "2주차: Git 커밋 훅 연동 + 2주 실사용 테스트 완료", "date": "2026-09-15", "done": false },
+        { "title": "3주차: VS Code 확장 프로토타입 + 백업 절차 완료", "date": "2026-09-22", "done": false },
+        { "title": "4주차: 문서화 및 1차 개선 결과 점검", "date": "2026-09-29", "done": false }
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "id": "seed-r1",
+      "title": "VS Code 완전 자동 연동 미완성 가능성",
+      "description": "커밋 훅/확장 개발 난이도에 따라 4주 내 완전 자동화가 어려울 수 있음. 대체 계획: 1주차에 완성되는 VS Code Tasks 수동 연동(휴먼 인 더 루프)을 기본 운영 방식으로 유지.",
+      "severity": "mid",
+      "status": "watching"
+    }
+  ],
+  "notes": [],
+  "roadmap": []
+}

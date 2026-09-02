@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PLM: 과제 완료 처리",
+      "type": "shell",
+      "command": "bash ${workspaceFolder}/scripts/plm-task.sh done ${input:taskId}",
+      "problemMatcher": []
+    },
+    {
+      "label": "PLM: 과제 진행률 업데이트",
+      "type": "shell",
+      "command": "bash ${workspaceFolder}/scripts/plm-task.sh progress ${input:taskId} ${input:progressValue}",
+      "problemMatcher": []
+    },
+    {
+      "label": "PLM: 과제 목록 보기",
+      "type": "shell",
+      "command": "bash ${workspaceFolder}/scripts/plm-task.sh list",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    { "id": "taskId", "type": "promptString", "description": "PLM 과제 ID (목록 보기로 확인)" },
+    { "id": "progressValue", "type": "promptString", "description": "진행률 (0-100)" }
+  ]
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>운영 노트 — 개인 과제 관리</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="rail">
+    <div class="rail-brand">
+      <span class="rail-brand-mark">§</span>
+      <span class="rail-brand-text">운영 노트</span>
+    </div>
+    <nav class="rail-nav" id="nav">
+      <button class="rail-item is-active" data-view="tasks">
+        <span class="rail-item-label">과제</span>
+        <span class="rail-item-count" id="count-tasks">0</span>
+      </button>
+      <button class="rail-item" data-view="projects">
+        <span class="rail-item-label">프로젝트 · 마일스톤</span>
+        <span class="rail-item-count" id="count-projects">0</span>
+      </button>
+      <button class="rail-item" data-view="risks">
+        <span class="rail-item-label">리스크</span>
+        <span class="rail-item-count" id="count-risks">0</span>
+      </button>
+      <button class="rail-item" data-view="notes">
+        <span class="rail-item-label">아이디어 노트</span>
+        <span class="rail-item-count" id="count-notes">0</span>
+      </button>
+      <button class="rail-item" data-view="roadmap">
+        <span class="rail-item-label">로드맵</span>
+        <span class="rail-item-count" id="count-roadmap">0</span>
+      </button>
+    </nav>
+    <div class="rail-status" id="connStatus">연결 확인 중…</div>
+  </aside>
+
+  <main class="stage">
+
+    <!-- 과제 -->
+    <section class="view is-active" id="view-tasks">
+      <header class="view-head">
+        <div>
+          <h1>과제</h1>
+          <p class="view-sub">진행 중인 작업과 완료율을 관리합니다.</p>
+        </div>
+        <button class="btn-primary" data-open-form="tasks">+ 과제 추가</button>
+      </header>
+      <div class="ledger" id="list-tasks"></div>
+    </section>
+
+    <!-- 프로젝트 -->
+    <section class="view" id="view-projects">
+      <header class="view-head">
+        <div>
+          <h1>프로젝트 · 마일스톤</h1>
+          <p class="view-sub">프로젝트별 주요 마일스톤과 기한을 관리합니다.</p>
+        </div>
+        <button class="btn-primary" data-open-form="projects">+ 프로젝트 추가</button>
+      </header>
+      <div class="ledger" id="list-projects"></div>
+    </section>
+
+    <!-- 리스크 -->
+    <section class="view" id="view-risks">
+      <header class="view-head">
+        <div>
+          <h1>리스크</h1>
+          <p class="view-sub">잠재 이슈와 대응 상태를 추적합니다.</p>
+        </div>
+        <button class="btn-primary" data-open-form="risks">+ 리스크 추가</button>
+      </header>
+      <div class="ledger" id="list-risks"></div>
+    </section>
+
+    <!-- 아이디어 노트 -->
+    <section class="view" id="view-notes">
+      <header class="view-head">
+        <div>
+          <h1>아이디어 노트</h1>
+          <p class="view-sub">떠오른 생각과 검토할 아이디어를 기록합니다.</p>
+        </div>
+        <button class="btn-primary" data-open-form="notes">+ 노트 추가</button>
+      </header>
+      <div class="notes-grid" id="list-notes"></div>
+    </section>
+
+    <!-- 로드맵 -->
+    <section class="view" id="view-roadmap">
+      <header class="view-head">
+        <div>
+          <h1>로드맵</h1>
+          <p class="view-sub">시기별 계획 항목을 정렬합니다.</p>
+        </div>
+        <button class="btn-primary" data-open-form="roadmap">+ 항목 추가</button>
+      </header>
+      <div class="roadmap-track" id="list-roadmap"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- 입력 폼 오버레이 -->
+<div class="overlay" id="overlay">
+  <form class="sheet" id="sheet">
+    <div class="sheet-head">
+      <h2 id="sheetTitle">추가</h2>
+      <button type="button" class="sheet-close" id="sheetClose">닫기</button>
+    </div>
+    <div class="sheet-body" id="sheetBody"></div>
+    <div class="sheet-foot">
+      <button type="button" class="btn-ghost" id="sheetCancel">취소</button>
+      <button type="submit" class="btn-primary">저장</button>
+    </div>
+  </form>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
